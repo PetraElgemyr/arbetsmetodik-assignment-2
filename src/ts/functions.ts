@@ -22,9 +22,8 @@ export function addNewTodoFromForm(todos: Todo[]) {
 
     if (inputBox.value !== "") {
       let newTodo = new Todo(inputBox.value, false, false);
-      todos.push(newTodo);
-      createTodoHtml(todos);
-      console.log("Ny todo lista", todos);
+      const newTodos: Todo[] = addToList(newTodo, todos);
+      createTodoHtml(newTodos);
       messageBox.innerHTML = "";
       inputBox.value = "";
     } else {
@@ -38,6 +37,7 @@ export function createTodoHtml(todos: Todo[]) {
     "myList"
   ) as HTMLUListElement;
   todosContainer.innerHTML = "";
+  console.log("Dessa ska skrivas ut", todos);
 
   for (let i = 0; i < todos.length; i++) {
     const myTodo: HTMLLIElement = document.createElement("li");
@@ -46,20 +46,24 @@ export function createTodoHtml(todos: Todo[]) {
     let todoText: HTMLSpanElement = document.createElement("span");
     todoText.className = "todo__span";
     todoText.innerHTML = todos[i].name;
+    if (todos[i].finished) {
+      todoText.classList.add("--finished");
+    }
 
     let checkbox: HTMLInputElement = document.createElement("input");
     checkbox.type = "checkbox";
     checkbox.className = "checkbox";
+    if (todos[i].removed) {
+      checkbox.checked = true;
+    }
 
-    let theObject = todos[i]; //sparar ner det nuvarande objektet för detta varv i loopen (behövs för clickevent)
+    let theObject = todos[i];
+
     myTodo.append(todoText, checkbox);
     todosContainer.appendChild(myTodo);
 
     todoText.addEventListener("click", () => {
       toggleFinished(todos[i], todoText);
-      //   theObject.finished = !theObject.finished;
-      //   todoText.classList.toggle("__finished");
-      //   console.log("Nu ändras finished på objektet", theObject);
     });
 
     checkbox.addEventListener("change", () => {
@@ -82,13 +86,13 @@ export function checkingCheckbox(
     todos.splice(index, 1); //ta bort objektet i listan
     myTodo.innerHTML = "";
     myTodo.remove(); //ta bort innehåll samt ta bort li-tagen från todoList
+    todo.removed = !todo.removed;
     console.log("Du klickade på objektet: ", todo);
     console.log("den nya todo-listan: ", todos); //checka att objektet är borta från listan
   }
 
-  if (todo.removed === false) {
+  if (todo.removed === true) {
     //om removed=false när man klickar ska det bli true, värdet ska växla mellan klickningar
-    todo.removed = true;
     const ulWithRemovedItems: HTMLUListElement = document.getElementById(
       "removedItemsList"
     ) as HTMLUListElement; //hitta ul för borttagna todos
@@ -103,12 +107,20 @@ export function checkingCheckbox(
     removedTodos.push(todo); //om removed=true ska de ligga i borttagna-listan
     console.log("Här är listan med borttagna todos: ", removedTodos);
     if (todo.finished === true) {
-      removedSpan.classList.toggle(
-        "--rem-finished"
-      ); /*om något objekt är överstruket samt markerat som finished redan, 
+      removedSpan.classList.add("--finished");
+
+      //   toggleFinished(todo, todoText);
+      //   removedSpan.classList.toggle(
+      //     "--rem-finished"
+      //   );
+      /*om något objekt är överstruket samt markerat som finished redan, 
       checkas av för att flyttas till andra listan behövs den överstrukna stylingen vara kvar. Så alla nya litaggar och checkboxes skapas
       som vanligt och placeras ut i DOMen. och OM finished=true så får NYA li-tagen (removedLi) i borttagna-listan klassnamn för styling
       för de finished OCH removed objekten */
+    }
+
+    if (todo.finished === false) {
+      removedSpan.classList.remove("--finished");
     }
 
     ulWithRemovedItems.appendChild(removedLi);
@@ -118,19 +130,19 @@ export function checkingCheckbox(
     }
 
     removedSpan.addEventListener("click", () => {
-      //om man klickar på span i den borttagna listan, ska få överstruken styling och byta finished-värde
-      if (todo.finished === false) {
-        todo.finished = true; //om finished=false (standardvärdet) när man klickar blir det true
-        console.log("Nu blir finished=true på objektet ", todo);
-        removedLi.classList.toggle("__removed");
-      } else {
-        if (todo.finished === true) {
-          //om finished=true när man klickar ska det bli false
-          todo.finished = false;
-          console.log("Nu blir finished=false på objektet ", todo);
-          removedLi.classList.remove("__removed");
-        }
-      }
+      toggleFinished(todo, removedSpan);
+      //   if (todo.finished === false) {
+      //     todo.finished = true; //om finished=false (standardvärdet) när man klickar blir det true
+      //     console.log("Nu blir finished=true på objektet ", todo);
+      //     removedLi.classList.toggle("__removed");
+      //   } else {
+      //     if (todo.finished === true) {
+      //       //om finished=true när man klickar ska det bli false
+      //       todo.finished = false;
+      //       console.log("Nu blir finished=false på objektet ", todo);
+      //       removedLi.classList.remove("__removed");
+      //     }
+      //   }
     });
     //för att flytta tillbaka mina borttagna saker, klicka på den nya checkboxen för de borttagna objekten
     checkboxForRemoved.addEventListener("change", () => {
@@ -186,8 +198,16 @@ export function reverse(
   console.log("min uppdaterade removed-list: ", removedTodos);
 }
 
-export function addToList(todoToAdd: Todo) {}
-export function removeFromList(todoToRemove: Todo) {}
+export function addToList(todoToAdd: Todo, todoList: Todo[]) {
+  todoList.push(todoToAdd);
+  return todoList;
+}
+
+export function removeFromList(todoToRemove: Todo, todoList: Todo[]) {
+  const index = todoList.indexOf(todoToRemove);
+  todoList.splice(index, 1);
+  createListHtml(todoList);
+}
 
 export function toggleFinished(todo: Todo, todoText: HTMLSpanElement) {
   todoText.classList.toggle("--finished");
@@ -198,7 +218,9 @@ export function toggleFinished(todo: Todo, todoText: HTMLSpanElement) {
   }
   console.log("Nu ändras todos finished värde", todo);
 }
-export function toggleRemovedCheckbox() {}
+export function toggleRemoveCheckbox() {}
+
+export function createListHtml(todosToShow: Todo[]) {}
 
 /*{
   // todo.removed = !todo.removed;
