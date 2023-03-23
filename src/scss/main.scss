@@ -90,7 +90,7 @@ body {
       }
     }
 
-    .__checked {
+    .--finished {
       color: rgba(54, 54, 54, 0.897);
       background-color: rgba(141, 141, 174, 0.701);
       text-decoration: line-through;
@@ -138,7 +138,7 @@ body {
     }
   }
 
-  .__removed {
+  .--rem-finished {
     color: rgba(54, 54, 54, 0.897);
     background-color: rgba(169, 150, 169, 0.903);
     text-decoration: line-through;
