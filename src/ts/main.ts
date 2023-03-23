@@ -1,8 +1,12 @@
-import { addNewTodoFromForm } from "./functions";
+import { addNewTodoFromForm, createTodoHtml } from "./functions";
+import { Todo } from "./models/Todo";
 
 function init() {
+  let todos: Todo[] = [];
+
   console.log("hej");
-  addNewTodoFromForm();
+  addNewTodoFromForm(todos);
+  createTodoHtml(todos);
 }
 
 init();
