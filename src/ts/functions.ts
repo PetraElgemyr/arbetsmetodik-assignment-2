@@ -1,9 +1,9 @@
 import { Todo } from "./models/Todo";
 
 let removedTodos: Todo[] = [];
-let todos: Todo[] = [];
+// let todos: Todo[] = [];
 
-export function addNewTodoFromForm() {
+export function addNewTodoFromForm(todos: Todo[]) {
   const form: HTMLFormElement = document.getElementById(
     "todoForm"
   ) as HTMLFormElement;
@@ -62,7 +62,7 @@ export function createTodoHtml(todos: Todo[]) {
     });
 
     checkbox.addEventListener("change", () => {
-      checkingCheckbox(myTodo, theObject, checkbox, todoText);
+      checkingCheckbox(myTodo, theObject, checkbox, todoText, todos);
       //   checkingCheckbox(checkbox, theObject, todos);
     });
   }
@@ -72,7 +72,8 @@ export function checkingCheckbox(
   myTodo: HTMLLIElement,
   todo: Todo,
   checkbox: HTMLInputElement,
-  todoText: HTMLSpanElement
+  todoText: HTMLSpanElement,
+  todos: Todo[]
 ) {
   if (checkbox.checked) {
     //om checkboxen är icheckad
@@ -132,7 +133,15 @@ export function checkingCheckbox(
     });
     //för att flytta tillbaka mina borttagna saker, klicka på den nya checkboxen för de borttagna objekten
     checkboxForRemoved.addEventListener("change", () => {
-      reverse(todo, checkboxForRemoved, removedLi, myTodo, checkbox, todoText);
+      reverse(
+        todo,
+        checkboxForRemoved,
+        removedLi,
+        myTodo,
+        checkbox,
+        todoText,
+        todos
+      );
     });
   }
 }
@@ -143,7 +152,8 @@ export function reverse(
   removedLi: HTMLLIElement,
   myTodo: HTMLLIElement,
   checkbox: HTMLInputElement,
-  todoText: HTMLSpanElement
+  todoText: HTMLSpanElement,
+  todos: Todo[]
 ) {
   console.log(
     "Nu flyttas ",
@@ -163,8 +173,8 @@ export function reverse(
   todo.removed = false;
   myTodo.appendChild(checkbox); //checkbox för todo-listan är tillbaka
 
-  if (todo.finished === true) {
-    myTodo.classList.toggle("__removed");
+  if (todo.finished === false) {
+    myTodo.classList.remove("__removed");
   }
 
   let myUlTag: HTMLUListElement = document.getElementById(
