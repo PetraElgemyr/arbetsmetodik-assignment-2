@@ -56,9 +56,10 @@ export function createTodoHtml(todos: Todo[]) {
     todosContainer.appendChild(myTodo);
 
     todoText.addEventListener("click", () => {
-      theObject.finished = !theObject.finished;
-      todoText.classList.toggle("__checked");
-      console.log("Nu ändras finished på objektet", theObject);
+      toggleFinished(todos[i], todoText);
+      //   theObject.finished = !theObject.finished;
+      //   todoText.classList.toggle("__finished");
+      //   console.log("Nu ändras finished på objektet", theObject);
     });
 
     checkbox.addEventListener("change", () => {
@@ -102,8 +103,8 @@ export function checkingCheckbox(
     removedTodos.push(todo); //om removed=true ska de ligga i borttagna-listan
     console.log("Här är listan med borttagna todos: ", removedTodos);
     if (todo.finished === true) {
-      removedLi.classList.toggle(
-        "__removed"
+      removedSpan.classList.toggle(
+        "--rem-finished"
       ); /*om något objekt är överstruket samt markerat som finished redan, 
       checkas av för att flyttas till andra listan behövs den överstrukna stylingen vara kvar. Så alla nya litaggar och checkboxes skapas
       som vanligt och placeras ut i DOMen. och OM finished=true så får NYA li-tagen (removedLi) i borttagna-listan klassnamn för styling
@@ -184,6 +185,20 @@ export function reverse(
   console.log("min uppdaterade todo-list: ", todos);
   console.log("min uppdaterade removed-list: ", removedTodos);
 }
+
+export function addToList(todoToAdd: Todo) {}
+export function removeFromList(todoToRemove: Todo) {}
+
+export function toggleFinished(todo: Todo, todoText: HTMLSpanElement) {
+  todoText.classList.toggle("--finished");
+  if (todoText.classList.contains("--finished")) {
+    todo.finished = true;
+  } else {
+    todo.finished = false;
+  }
+  console.log("Nu ändras todos finished värde", todo);
+}
+export function toggleRemovedCheckbox() {}
 
 /*{
   // todo.removed = !todo.removed;
