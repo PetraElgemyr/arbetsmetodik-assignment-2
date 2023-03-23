@@ -6,8 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Todolista</title>
     <link rel="stylesheet" href="scss/main.scss" />
-    <!-- <script defer src="ts/main.ts" type="module"></script> -->
-    <script defer src="js/main.js" type="module"></script>
+    <script defer src="ts/main.ts" type="module"></script>
+    <!-- <script defer src="js/main.js" type="module"></script> -->
   </head>
   <body>
     <div id="myContainer">
@@ -18,10 +18,12 @@
         todo-listan</span
       >
       <span>Nedan kan du lägga till egna todos!</span>
-      <form>
-        <input type="text" id="newItem" placeholder="Skriv något här!" />
-        <button type="button" id="addItemBtn">Lägg till</button>
+
+      <form id="todoForm">
+        <input type="text" id="todoInput" placeholder="Skriv något här!" />
+        <button id="addItemBtn">Lägg till</button>
       </form>
+      <p id="errorInput" class="hide-error"></p>
 
       <section>
         <div>
