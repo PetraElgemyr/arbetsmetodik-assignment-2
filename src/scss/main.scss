@@ -90,6 +90,10 @@ body {
       }
     }
 
+    li.--removed {
+      background-color: rgb(77, 77, 77);
+    }
+
     .--finished-todo {
       color: rgba(54, 54, 54, 0.897);
       background-color: rgba(141, 141, 174, 0.701);

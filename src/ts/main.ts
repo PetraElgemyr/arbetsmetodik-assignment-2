@@ -2,8 +2,15 @@ import {
   addNewTodoFromForm,
   createRemovedTodosHtml,
   createTodosHtml,
+  sortTodos,
 } from "./functions";
 import { Todo } from "./models/Todo";
+const sortTodosBtn: HTMLButtonElement = document.getElementById(
+  "sortBtn"
+) as HTMLButtonElement;
+const sortRemovedBtn: HTMLButtonElement = document.getElementById(
+  "sortRemBtn"
+) as HTMLButtonElement;
 
 function init() {
   let todos: Todo[] = [];
@@ -11,6 +18,15 @@ function init() {
 
   console.log("hej");
   addNewTodoFromForm(todos, removedTodos);
+  sortTodosBtn.addEventListener("click", () => {
+    sortTodos(todos);
+    createTodosHtml(todos, removedTodos);
+  });
+  sortRemovedBtn.addEventListener("click", () => {
+    sortTodos(removedTodos);
+    createRemovedTodosHtml(removedTodos, todos);
+  });
+
   createTodosHtml(todos, removedTodos);
   createRemovedTodosHtml(removedTodos, todos);
 }
