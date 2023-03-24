@@ -4,3 +4,9 @@
 ## Description
 
 The goal with this assignment is to practice code refactoring. I am to use an old project and convert it to typescript (if it is in javascript) and refactor at least 3 parts, but aspire to refactor the entire code.
+
+###
+
+Commit messages:
+(fix) - Used in commit message when something is wrong and needs to change logic if the functionality isn't right. I also use fix-commits when I change javascript into typescript because the old javascript includes a lot of possible bugs and errors.
+(feat) - Used when something entire new is added, some new function etc.
