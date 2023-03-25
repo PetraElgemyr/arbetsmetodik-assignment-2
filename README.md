@@ -10,3 +10,6 @@ The goal with this assignment is to practice code refactoring. I am to use an ol
 Commit messages:
 (fix) - Used in commit message when something is wrong and needs to change logic if the functionality isn't right. I also use fix-commits when I change javascript into typescript because the old javascript includes a lot of possible bugs and errors.
 (feat) - Used when something entire new is added, some new function etc.
+(docs) - Commits related to the README file or basic overall comments as documentation to understand each function.
+
+I don't use optional scopes because the project is very small and only have simple functions with no api request in the project, or any other outside connections. The project is about creating html for 2 lists. There is no need to divide the commits any further.
