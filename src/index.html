@@ -6,10 +6,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Todolista</title>
     <link rel="stylesheet" href="scss/main.scss" />
+    <script
+      src="https://kit.fontawesome.com/fd2b1d7132.js"
+      crossorigin="anonymous"
+    ></script>
     <script defer src="ts/main.ts" type="module"></script>
   </head>
   <body>
-    <div id="myContainer">
+    <div id="mainContainer">
       <h1>Gör en todo-lista!</h1>
       <span>Klicka på en punkts text för att markera den som klar.</span>
       <span
@@ -24,15 +28,15 @@
       </form>
       <p id="errorInput" class="hide-error"></p>
 
-      <section>
-        <div>
+      <section class="container">
+        <div class="container__todos">
           <button type="button" id="sortBtn">Sortera alfabetiskt</button>
           <span><i id="emptyTodos" class="fa fa-trash-o"></i> </span>
 
           <h3>Att göra:</h3>
           <ul id="myList"></ul>
         </div>
-        <div>
+        <div class="container__todos --removed">
           <button type="button" id="sortRemBtn">Sortera alfabetiskt</button>
           <span><i id="emptyRemTodos" class="fa fa-trash-o"></i> </span>
 
