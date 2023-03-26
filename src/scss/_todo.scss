@@ -45,8 +45,11 @@ div#mainContainer {
     }
 
     button#sortBtn,
-    button#sortRemBtn:hover {
-      cursor: pointer;
+    button#sortRemBtn {
+      margin-bottom: 2%;
+      &:hover {
+        cursor: pointer;
+      }
     }
 
     i.fa-trash-o:hover {
