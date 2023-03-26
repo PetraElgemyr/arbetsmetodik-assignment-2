@@ -17,8 +17,8 @@ const emptyRemovedBtn: HTMLButtonElement = document.getElementById(
 ) as HTMLButtonElement;
 
 function init() {
-  let todos: Todo[] = [];
-  let removedTodos: Todo[] = [];
+  // let todos: Todo[] = [];
+  // let removedTodos: Todo[] = [];
 
   console.log("hej");
   addNewTodoFromForm(todos, removedTodos);
