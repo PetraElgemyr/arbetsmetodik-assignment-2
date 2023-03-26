@@ -1,4 +1,4 @@
-import { createTodosHtml } from "./createHtml";
+import { createTodosHtml } from "./htmlFunctions";
 import { Todo } from "./models/Todo";
 
 export function addNewTodoFromForm(todos: Todo[], removedTodos: Todo[]) {

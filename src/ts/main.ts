@@ -37,8 +37,16 @@ function init() {
     sortTodos(removedTodos);
     createRemovedTodosHtml(removedTodos, todos);
   });
-
+  emptyBtn.addEventListener("click", () => {
+    emptyList(todos);
+    createTodosHtml(todos, removedTodos);
+  });
+  emptyRemovedBtn.addEventListener("click", () => {
+    emptyList(removedTodos);
+    createRemovedTodosHtml(removedTodos, todos);
+  });
   createTodosHtml(todos, removedTodos);
+  // createRemovedTodosHtml(todos, removedTodos);
   createRemovedTodosHtml(removedTodos, todos);
 }
 
