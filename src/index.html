@@ -5,7 +5,10 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Todolista</title>
-    <link rel="stylesheet" href="scss/main.scss" />
+    <script
+      src="https://kit.fontawesome.com/fd2b1d7132.js"
+      crossorigin="anonymous"
+    ></script>
     <script defer src="ts/main.ts" type="module"></script>
   </head>
   <body>
@@ -27,12 +30,13 @@
       <section>
         <div>
           <button type="button" id="sortBtn">Sortera alfabetiskt</button>
+          <span><i id="emptyTodos" class="fa fa-trash-o"></i> </span>
           <h3>Att göra:</h3>
           <ul id="myList"></ul>
         </div>
         <div>
           <button type="button" id="sortRemBtn">Sortera alfabetiskt</button>
-
+          <span><i id="emptyRemTodos" class="fa fa-trash-o"></i> </span>
           <h3>Borttagna todos:</h3>
           <ul id="removedItemsList"></ul>
         </div>
