@@ -1,4 +1,4 @@
-import { createRemovedTodosHtml, createTodosHtml } from "./createHtml";
+import { createRemovedTodosHtml, createTodosHtml } from "./htmlFunctions";
 import { addNewTodoFromForm, emptyList, sortTodos } from "./functions";
 import { Todo } from "./models/Todo";
 import "../scss/main.scss";
