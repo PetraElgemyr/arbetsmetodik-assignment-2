@@ -46,7 +46,6 @@ function init() {
     createRemovedTodosHtml(removedTodos, todos);
   });
   createTodosHtml(todos, removedTodos);
-  // createRemovedTodosHtml(todos, removedTodos);
   createRemovedTodosHtml(removedTodos, todos);
 }
 
