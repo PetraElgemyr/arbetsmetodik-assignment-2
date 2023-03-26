@@ -49,3 +49,7 @@ export function toggleFinished(todo: Todo, todoText: HTMLSpanElement) {
 export function sortTodos(todos: Todo[]) {
   todos.sort((a, b) => (a.name > b.name ? 1 : -1));
 }
+
+export function emptyList(todos: Todo[]) {
+  todos.splice(0, todos.length);
+}
