@@ -5,6 +5,13 @@
 
 The goal with this assignment is to practice code refactoring. I use an old project for this assignment and convert it to typescript (if it is in javascript) and refactor at least 3 parts, but aspire to refactor the entire code. Both the logic if needed, structure and styling.
 
+### The todo list
+
+This is a todo list where yoou can add todos from a form. You have to write something in the input box or else the user will get an error message. The todo tasks can be marked as finished and can be removed to the removed list. Both the lists can be emptied and they can be sorted in alphabetical order.
+
+![Todo list](./src/assets/todos.jpg)
+![Todo list error msg](./src/assets/todo2.jpg)
+
 ### Commit messages
 
 - (fix) - Used when something is wrong and needs to change logic if the functionality isn't right or there is a bug. Vanilla javascript is not to be used in this assignment so I also use fix-commits when I change javascript into typescript to fix old javascript bugs and errors. Fix is also used when I change bad names for variables and scss selectors.
