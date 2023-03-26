@@ -1,4 +1,4 @@
-import { createTodosHtml } from "./createHtml";
+import { createTodosHtml } from "./htmlFunctions";
 import { Todo } from "./models/Todo";
 
 export function addNewTodoFromForm(todos: Todo[], removedTodos: Todo[]) {
@@ -48,4 +48,8 @@ export function toggleFinished(todo: Todo, todoText: HTMLSpanElement) {
 
 export function sortTodos(todos: Todo[]) {
   todos.sort((a, b) => (a.name > b.name ? 1 : -1));
+}
+
+export function emptyList(todos: Todo[]) {
+  todos.splice(0, todos.length);
 }
