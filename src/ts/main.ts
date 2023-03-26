@@ -1,4 +1,4 @@
-import { createRemovedTodosHtml, createTodosHtml } from "./htmlFunctions";
+import { createRemovedTodosHtml, createTodosHtml } from "./createHtml";
 import { addNewTodoFromForm, emptyList, sortTodos } from "./functions";
 import { Todo } from "./models/Todo";
 import "../scss/main.scss";
@@ -17,11 +17,18 @@ const emptyRemovedBtn: HTMLButtonElement = document.getElementById(
 ) as HTMLButtonElement;
 
 function init() {
-  // let todos: Todo[] = [];
-  // let removedTodos: Todo[] = [];
-
-  console.log("hej");
+  let todos: Todo[] = [];
+  let removedTodos: Todo[] = [];
   addNewTodoFromForm(todos, removedTodos);
+
+  emptyBtn.addEventListener("click", () => {
+    emptyList(todos);
+    createTodosHtml(todos, removedTodos);
+  });
+  emptyRemovedBtn.addEventListener("click", () => {
+    emptyList(removedTodos);
+    createRemovedTodosHtml(removedTodos, todos);
+  });
   sortTodosBtn.addEventListener("click", () => {
     sortTodos(todos);
     createTodosHtml(todos, removedTodos);
