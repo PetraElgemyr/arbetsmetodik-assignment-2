@@ -3,17 +3,17 @@ import { addToList, removeFromList, toggleFinished } from "./functions";
 
 export function createTodosHtml(todos: Todo[], removedTodos: Todo[]) {
   const todosContainer: HTMLUListElement = document.getElementById(
-    "myList"
+    "list"
   ) as HTMLUListElement;
   todosContainer.innerHTML = "";
   console.log("Todos att göra", todos);
 
   for (let i = 0; i < todos.length; i++) {
     const myTodo: HTMLLIElement = document.createElement("li");
-    myTodo.className = "myTodoItem";
+    myTodo.className = "todoItem";
 
     let todoText: HTMLSpanElement = document.createElement("span");
-    todoText.className = "todo__span";
+    todoText.className = "todoItem__span";
     todoText.innerHTML = todos[i].name;
     if (todos[i].finished) {
       todoText.classList.add("--finished");
@@ -21,7 +21,7 @@ export function createTodosHtml(todos: Todo[], removedTodos: Todo[]) {
 
     let checkbox: HTMLInputElement = document.createElement("input");
     checkbox.type = "checkbox";
-    checkbox.className = "checkbox";
+    checkbox.className = "todoItem__checkbox";
     if (todos[i].removed) {
       checkbox.checked = true;
     }
@@ -45,18 +45,18 @@ export function createTodosHtml(todos: Todo[], removedTodos: Todo[]) {
 
 export function createRemovedTodosHtml(removedTodos: Todo[], todos: Todo[]) {
   const removedTodosContainer: HTMLUListElement = document.getElementById(
-    "removedItemsList"
+    "removedList"
   ) as HTMLUListElement;
   removedTodosContainer.innerHTML = "";
   console.log("Borttagna todos som ska skrivas ut", removedTodos);
 
   for (let i = 0; i < removedTodos.length; i++) {
     const myTodo: HTMLLIElement = document.createElement("li");
-    myTodo.className = "myTodoItem";
+    myTodo.className = "todoItem";
     myTodo.classList.add("--removed");
 
     let todoText: HTMLSpanElement = document.createElement("span");
-    todoText.className = "todo__span";
+    todoText.className = "todoItem__span";
     todoText.innerHTML = removedTodos[i].name;
     if (removedTodos[i].finished) {
       todoText.classList.add("--finished");
@@ -64,7 +64,7 @@ export function createRemovedTodosHtml(removedTodos: Todo[], todos: Todo[]) {
 
     let checkbox: HTMLInputElement = document.createElement("input");
     checkbox.type = "checkbox";
-    checkbox.className = "checkbox";
+    checkbox.className = "todoItem__checkbox";
     if (removedTodos[i].removed) {
       checkbox.checked = true;
     }
