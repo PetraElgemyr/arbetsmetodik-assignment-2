@@ -1,10 +1,8 @@
-import {
-  addNewTodoFromForm,
-  createRemovedTodosHtml,
-  createTodosHtml,
-  sortTodos,
-} from "./functions";
+import { createRemovedTodosHtml, createTodosHtml } from "./createHtml";
+import { addNewTodoFromForm, sortTodos } from "./functions";
 import { Todo } from "./models/Todo";
+import "../scss/main.scss";
+
 const sortTodosBtn: HTMLButtonElement = document.getElementById(
   "sortBtn"
 ) as HTMLButtonElement;
